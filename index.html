@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch配信タイムライン</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-container">
+        <h1>Twitch配信タイムライン</h1>
+        <p>指定したチャンネルの配信履歴をカレンダーで表示します。</p>
+        <a id="login-btn" class="twitch-btn">Twitchでログイン</a>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <div id="app">
+            <header>
+                <h1>Twitch配信タイムライン</h1>
+                <div class="controls">
+                    <div class="streamer-input-container">
+                        <div class="streamer-input-group">
+                            <input type="text" id="streamer-input" placeholder="Twitchチャンネル名を入力..." autocomplete="off">
+                            <button id="add-streamer-btn">追加</button>
+                        </div>
+                        <div id="suggestions-container" class="hidden"></div>
+                    </div>
+                    <div id="view-switcher">
+                        <button id="month-view-btn" class="active">月表示</button>
+                        <button id="day-view-btn">日表示</button>
+                    </div>
+                </div>
+                 <div id="nav-controls">
+                    <button id="prev-month-btn">&lt;</button>
+                    <h2 id="current-month-display"></h2>
+                    <button id="next-month-btn">&gt;</button>
+                    <input type="date" id="native-date-picker" class="picker-hidden">
+                </div>
+                <div id="streamer-list-container">
+                    <p>表示中のチャンネル:</p>
+                    <div id="streamer-list"></div>
+                </div>
+            </header>
+    
+            <main>
+                <div id="monthly-view" class="view-container active">
+                    <div id="calendar-header"></div>
+                    <div id="calendar-grid"></div>
+                </div>
+                <div id="daily-view" class="view-container">
+                    <div id="timeline-header">
+                        <!-- 時間の目盛りはJSで生成 -->
+                    </div>
+                    <div id="timeline-body">
+                        <!-- タイムライン本体はJSで生成 -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="month-picker-modal" class="modal hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

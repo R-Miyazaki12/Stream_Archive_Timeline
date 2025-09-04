@@ -285,17 +285,40 @@ button:hover {
 
 /* --- Daily View (Original Timeline) --- */
 #daily-view {
-    overflow-x: auto;
-    background-color: var(--bg-color-light);
-    padding: 1rem;
+    /* Enable scrolling in both directions and set a max height */
+    overflow: auto;
+    max-height: 75vh;
     border-radius: 8px;
+    /* padding is removed from here to be handled by inner elements if needed */
+}
+
+#timeline-header,
+#timeline-body {
+    /* Set a minimum width to force horizontal scroll on narrow screens */
+    min-width: 1000px;
 }
 
 #timeline-header {
     display: grid;
     grid-template-columns: 120px 1fr;
-    margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    padding: 0 0 0.5rem 0; /* Adjust padding */
+
+    /* --- Sticky Header --- */
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color-light);
+    z-index: 2;
+}
+
+.time-markers-corner {
+    /* This is the top-left empty cell */
+    position: sticky;
+    left: 0;
+    /* Needs a background to cover content scrolling underneath */
+    background-color: var(--bg-color-light);
+    /* Needs to be on top of the streamer name column */
+    z-index: 3;
 }
 
 .time-markers {
@@ -318,14 +341,18 @@ button:hover {
 
 .streamer-name {
     font-weight: bold;
-    padding-left: 1rem; /* 左側のパディングに変更 */
-    text-align: left; /* 左揃えに変更 */
     border-right: 2px solid var(--border-color);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: 100%; /* Make the cell fill the row height */
+    padding-left: 1rem;
+
+    /* --- Sticky Column --- */
+    position: sticky;
+    left: 0;
+    background-color: var(--bg-color-light);
+    z-index: 1;
+
+    /* Flexbox to align content */
     display: flex;
-    justify-content: flex-start; /* 左揃えに変更 */
     align-items: center;
     gap: 0.5rem;
 }
@@ -333,6 +360,11 @@ button:hover {
 .streamer-name a {
     color: inherit;
     text-decoration: none;
+    /* Allow the link to shrink and truncate */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .streamer-name a:hover {
@@ -359,13 +391,14 @@ button:hover {
     transition: background-color 0.2s, transform 0.2s;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center; /* Vertical centering */
 }
 
-.broadcast-title {
+.broadcast-title-text {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 }
 
 .broadcast-block:hover {
@@ -374,14 +407,15 @@ button:hover {
     z-index: 10;
 }
 
-/* --- Live Indicator --- */
-.live-indicator {
-    width: 9px;
-    height: 9px;
-    background-color: var(--live-color);
-    border-radius: 50%;
-    animation: pulse 1.5s infinite;
-}
+    /* --- Live Indicator --- */
+    .live-indicator {
+        width: 9px;
+        height: 9px;
+        background-color: #eb0400;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+        flex-shrink: 0; /* Prevent the dot from shrinking */
+    }
 
 @keyframes pulse {
     0% {

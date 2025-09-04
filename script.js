@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nativeDatePicker.addEventListener('change', (e) => {
             const [year, month, day] = e.target.value.split('-').map(Number);
             currentDate = new Date(year, month - 1, day);
-            renderDailyView();
+            renderCurrentView();
         });
         streamerInput.addEventListener('input', debouncedHandleSuggestionSearch);
         document.addEventListener('click', (e) => {
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchVodsForMonth(userId, date) {
         const year = date.getFullYear();
         const month = date.getMonth();
-        const data = await twitchApiFetch(`videos?user_id=${userId}&period=month&first=100`, true);
+        const data = await twitchApiFetch(`videos?user_id=${userId}&period=month&first=100&type=archive`, true);
         if (!data) return [];
         return data.filter(vod => {
             const vodDate = new Date(vod.created_at);
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             nameDiv.textContent = streamerData.display_name;
         }
-        const allVods = await twitchApiFetch(`videos?user_id=${streamerData.id}&first=100`, true);
+        const allVods = await twitchApiFetch(`videos?user_id=${streamerData.id}&type=archive&first=100`, true);
         if (allVods) {
             const dayVods = allVods.filter(vod => {
                 const vodDate = new Date(vod.created_at);
@@ -265,10 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createBroadcastBlock(vod) {
-        console.log(vod); // デバッグ用にVODオブジェクトをコンソールに出力
         const block = document.createElement('div');
         block.className = 'broadcast-block';
-        block.innerHTML = `<div class="broadcast-title">${vod.title}<br>${vod.game_name || ''}</div>`;
+        block.innerHTML = `<div class="broadcast-title-text">${vod.title}</div>`;
         const startTime = new Date(vod.created_at);
         const endTime = new Date(startTime.getTime() + parseTwitchDuration(vod.duration));
         const startOfDay = new Date(currentDate).setHours(0, 0, 0, 0);

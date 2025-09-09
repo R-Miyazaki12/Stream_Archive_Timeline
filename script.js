@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Twitch API 設定 ---
-    const CLIENT_ID = 'uowehmui1x4ws4r5xnhtzkxdmwii60';
+        const CLIENT_ID = 'wmrs4m3hc29v2n7mh1dt20cswv30wu';
     const REDIRECT_URI = window.location.origin + window.location.pathname;
     const AUTH_SCOPE = 'user:read:follows';
 

@@ -537,3 +537,26 @@ header {
         grid-column: 2 / 3;
     }
 }
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #adadb8;
+}
+
+footer a {
+    color: #adadb8;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--text-color);
+}

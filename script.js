@@ -485,6 +485,32 @@ ${vod.duration}"><div class="broadcast-title-text">${vod.title}</div></a>`;
         };
     }
 
+    // --- Affiliate Link Randomizer ---
+    function setupAffiliateLink() {
+        const keywords = [
+            'ゲーミングキーボード',
+            'ゲーミングマウス',
+            'ゲーミングモニター',
+            'ゲーミングヘッドセット',
+            'ゲーミングPC',
+            'ゲーミングコントローラー'
+        ];
+        // ★★★ ご自身のAmazonアソシエイトタグに書き換えてください ★★★
+        const affiliateTag = 'rmiyazaki12-22'; 
+
+        const linkElement = document.getElementById('affiliate-link');
+        if (!linkElement) return;
+
+        const randomKeyword = keywords[Math.floor(Math.random() * keywords.length)];
+        
+        const encodedKeyword = encodeURIComponent(randomKeyword);
+        const url = `https://www.amazon.co.jp/s?k=${encodedKeyword}&tag=${affiliateTag}`;
+
+        linkElement.href = url;
+        linkElement.textContent = `${randomKeyword} をAmazonで探す (アソシエイトリンク)`;
+    }
+
     // --- 初期化実行 ---
     handleAuthentication();
+    setupAffiliateLink();
 });

@@ -1,12 +1,5 @@
 {
-  "builds": [
-    { "src": "api/twitch.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    {
-      "src": "/api/twitch",
-      "methods": ["POST", "OPTIONS"],
-      "dest": "/api/twitch.js"
-    }
+  "rewrites": [
+    { "source": "/api/twitch", "destination": "/api/twitch.js" }
   ]
 }

@@ -507,7 +507,7 @@ ${vod.duration}"><div class="broadcast-title-text">${vod.title}</div></a>`;
         const url = `https://www.amazon.co.jp/s?k=${encodedKeyword}&tag=${affiliateTag}`;
 
         linkElement.href = url;
-        linkElement.textContent = `${randomKeyword} をAmazonで探す (アソシエイトリンク)`;
+                linkElement.textContent = `${randomKeyword} をAmazonで探す`;
     }
 
     // --- 初期化実行 ---

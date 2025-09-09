@@ -538,25 +538,19 @@ header {
     }
 }
 
-/* --- Footer --- */
-footer {
+/* --- Affiliate Link --- */
+#affiliate-container {
     text-align: center;
-    padding: 2rem 1rem 1rem 1rem;
-    margin-top: 2rem;
-    border-top: 1px solid var(--border-color);
+    padding: 1rem;
 }
 
-footer p {
+#affiliate-container a {
     font-size: 0.9rem;
-    color: #adadb8;
-}
-
-footer a {
     color: #adadb8;
     text-decoration: underline;
     transition: color 0.2s;
 }
 
-footer a:hover {
+#affiliate-container a:hover {
     color: var(--text-color);
 }

@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/twitch.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/twitch.js"
+    }
+  ]
+}

@@ -1,13 +1,8 @@
 {
-  "functions": {
-    "api/twitch.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
+  "builds": [
+    { "src": "api/twitch.js", "use": "@vercel/node" }
+  ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/twitch.js"
-    }
+    { "src": "/api/twitch", "dest": "/api/twitch.js" }
   ]
 }

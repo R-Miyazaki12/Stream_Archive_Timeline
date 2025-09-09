@@ -316,7 +316,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let streamerRows = '';
         if (streamers.length > 0) {
             const liveStatusSet = new Set((await twitchApiFetch(`streams?${streamers.map(n => `user_login=${n}`).join('&')}`)).map(s => s.user_login));
-            streamers.forEach(login => {
+            
+            const sortedStreamers = [...streamers].sort((a, b) => {
+                const aIsLive = liveStatusSet.has(a);
+                const bIsLive = liveStatusSet.has(b);
+                if (aIsLive === bIsLive) return 0;
+                return bIsLive - aIsLive;
+            });
+
+            sortedStreamers.forEach(login => {
                 const streamerData = streamerDataCache[login];
                 if (!streamerData) return;
                 const isLive = liveStatusSet.has(login);

@@ -1,8 +1,5 @@
 {
   "builds": [
     { "src": "api/twitch.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/twitch", "dest": "/api/twitch.js" }
   ]
 }
